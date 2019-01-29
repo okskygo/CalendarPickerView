@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sunday"
+        style="@style/DayTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="日"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/monday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/monday"
+        style="@style/DayTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="一"
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintLeft_toRightOf="@+id/sunday"
+        app:layout_constraintRight_toLeftOf="@+id/tuesday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tuesday"
+        style="@style/DayTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="二"
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintLeft_toRightOf="@+id/monday"
+        app:layout_constraintRight_toLeftOf="@+id/wednesday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/wednesday"
+        style="@style/DayTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="三"
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintLeft_toRightOf="@+id/tuesday"
+        app:layout_constraintRight_toLeftOf="@+id/thursday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/thursday"
+        style="@style/DayTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="四"
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintLeft_toRightOf="@+id/wednesday"
+        app:layout_constraintRight_toLeftOf="@+id/friday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/friday"
+        style="@style/DayTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="五"
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintLeft_toRightOf="@+id/thursday"
+        app:layout_constraintRight_toLeftOf="@+id/saturday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/saturday"
+        style="@style/DayTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="六"
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintLeft_toRightOf="@+id/friday"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#19000000"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunday" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/separator" />
+
+</merge>
