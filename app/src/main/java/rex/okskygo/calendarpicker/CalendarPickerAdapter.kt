@@ -7,11 +7,13 @@ import androidx.core.content.ContextCompat
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.holder_calendar_picker.view.*
-import kotlinx.android.synthetic.main.holder_month_calendar_picker.view.*
-import java.util.*
+import kotlinx.android.synthetic.main.holder_calendar_picker.view.calendarBackground
+import kotlinx.android.synthetic.main.holder_calendar_picker.view.textView
+import kotlinx.android.synthetic.main.holder_month_calendar_picker.view.monthTextView
+import java.util.Calendar
 
-class CalendarPickerAdapter(val onSelectListener: (Calendar, CalendarPickerType) -> Unit) : PagedListAdapter<CalendarPickerDto, RecyclerView.ViewHolder>(DIFF) {
+class CalendarPickerAdapter(val onSelectListener: (Calendar, CalendarPickerType) -> Unit)
+    : PagedListAdapter<CalendarPickerDto, RecyclerView.ViewHolder>(DIFF) {
 
     companion object {
 
@@ -157,24 +159,27 @@ class CalendarPickerAdapter(val onSelectListener: (Calendar, CalendarPickerType)
     }
 
     private class CalendarPickerViewHolder(parent: ViewGroup, clickListener: (Calendar) -> Unit) :
-            RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.holder_calendar_picker, parent, false)) {
+            RecyclerView.ViewHolder(
+                    LayoutInflater.from(parent.context).inflate(R.layout.holder_calendar_picker, parent, false)) {
 
-        private var calendar: Calendar? = null
+        private var dayDto: DayDto? = null
 
         init {
             itemView.setOnClickListener {
-                calendar?.let(clickListener)
+                if (dayDto?.compareDay != DayDto.DayEnum.BEFORE) {
+                    dayDto?.calendar?.let(clickListener)
+                }
             }
         }
 
         fun bindEmpty(emptyDto: EmptyDto) {
-            calendar = null
+            dayDto = null
             itemView.textView.text = ""
             bindSelectState(emptyDto.selectState)
         }
 
         fun bind(dayDto: DayDto) {
-            calendar = dayDto.calendar
+            this.dayDto = dayDto
             itemView.calendarBackground.setBackgroundResource(0)
             itemView.textView.text = dayDto.calendar.get(Calendar.DATE).toString()
             if (dayDto.selectState == DaySelectState.NONE) {
@@ -184,7 +189,8 @@ class CalendarPickerAdapter(val onSelectListener: (Calendar, CalendarPickerType)
                         itemView.calendarBackground.setBackgroundResource(R.drawable.bg_calendar_today)
                     }
                     DayDto.DayEnum.BEFORE -> {
-                        itemView.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorTextDisabled))
+                        itemView.textView.setTextColor(
+                                ContextCompat.getColor(itemView.context, R.color.colorTextDisabled))
                     }
                     DayDto.DayEnum.AFTER -> {
                         itemView.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.colorTextHigh))
@@ -223,7 +229,8 @@ class CalendarPickerAdapter(val onSelectListener: (Calendar, CalendarPickerType)
     }
 
     private class CalendarPickerMonthViewHolder(parent: ViewGroup) :
-            RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.holder_month_calendar_picker, parent, false)) {
+            RecyclerView.ViewHolder(
+                    LayoutInflater.from(parent.context).inflate(R.layout.holder_month_calendar_picker, parent, false)) {
 
         fun bind(monthDto: MonthDto) {
             itemView.monthTextView.text = "${monthDto.calendar.get(Calendar.MONTH) + 1}月"

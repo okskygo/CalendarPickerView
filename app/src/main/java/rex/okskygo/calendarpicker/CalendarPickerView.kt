@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.layout_calendar_picker_view.view.*
-import java.util.*
+import kotlinx.android.synthetic.main.layout_calendar_picker_view.view.recyclerView
+import java.util.Calendar
 
 class CalendarPickerView @JvmOverloads constructor(
         context: Context,

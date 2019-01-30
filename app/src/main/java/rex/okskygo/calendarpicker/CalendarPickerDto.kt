@@ -1,6 +1,6 @@
 package rex.okskygo.calendarpicker
 
-import java.util.*
+import java.util.Calendar
 
 sealed class CalendarPickerDto
 
